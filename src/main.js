@@ -7,13 +7,17 @@ import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 
 import '@/styles/index.scss' // global css
+import '@/icons' // icon
+import '@/permission' // permission control
 
 import App from './App'
 import store from './store'
 import router from './router'
-
-import '@/icons' // icon
-import '@/permission' // permission control
+import * as directives from '@/directives' // 引入自定义指令
+Object.keys(directives).forEach(key => {
+  // 遍历所有导出的自定义指令对象，完成自定义指令注册
+  Vue.directive(key, directives[key])
+})
 
 /**
  * If you don't want to use mock-server

@@ -1,7 +1,8 @@
+//函数式组件：没有data状态，没有响应式数据，只会接收props属性，没有this
 <script>
 export default {
   name: 'MenuItem',
-  functional: true,
+  functional: true, //  functional为true，表示该组件是一个函数式组件
   props: {
     icon: {
       type: String,
