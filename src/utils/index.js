@@ -2,6 +2,8 @@
  * Created by PanJiaChen on 16/11/18.
  */
 
+// import item from '@/layout/components/Sidebar/Item'
+
 /**
  * Parse the time to string
  * @param {(Object|string|number)} time
@@ -114,4 +116,18 @@ export function param2Obj(url) {
     }
   })
   return obj
+}
+
+export function tranListToTreeData(list, rootValue) {
+  const arr = []
+  list.forEach(item => {
+    if (item.pid === rootValue) {
+      const children = tranListToTreeData(list, item.id)
+      if (children.length) {
+        item.child = children
+      }
+      arr.push(item)
+    }
+  })
+  return arr
 }
