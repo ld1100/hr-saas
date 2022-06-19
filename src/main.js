@@ -18,7 +18,21 @@ Object.keys(directives).forEach(key => {
   // 遍历所有导出的自定义指令对象，完成自定义指令注册
   Vue.directive(key, directives[key])
 })
+// 引入全局公共组件
+import Component from '@/components'
 
+Vue.use(Component) // 注册自己的插件
+
+import * as filters from '@/filters' // 引入工具类
+// 注册全局的过滤器
+Object.keys(filters).forEach(key => {
+  // 注册过滤器
+  Vue.filter(key, filters[key])
+})
+//打印插件
+import Print from 'vue-print-nb'
+
+Vue.use(Print)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

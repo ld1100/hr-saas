@@ -1,11 +1,14 @@
 <template>
   <div class="dashboard-container">
     <div class="app-container">
+      <div class="breadcrumb-container">
+        <Breadcrumb />
+      </div>
       <el-card>
         <el-tabs v-model="activeTab" @tab-click="handleClick">
           <el-tab-pane label="角色管理" name="role">
             <el-row>
-              <el-button type="primary" size="small" @click="showDialog=true">添加角色</el-button>
+              <el-button type="primary" size="small">添加角色</el-button>
             </el-row>
             <el-table :data="roleData" style="width: 100%">
               <el-table-column label="序号" type="index" width="120" align="center" />
@@ -167,6 +170,6 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div v-loading="loading" class="dashboard-container">
     <div class="app-container">
+      <div class="breadcrumb-container">
+        <Breadcrumb />
+      </div>
       <el-card class="tree-card">
         <tree-tools :tree-node="company" :is-root="true" @addDepts="addDepts" />
         <el-tree :data="departs" :props="defaultProps" default-expand-all>
