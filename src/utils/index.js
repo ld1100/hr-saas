@@ -119,14 +119,17 @@ export function param2Obj(url) {
 }
 
 export function tranListToTreeData(list, rootValue) {
-  const arr = []
+  var arr = []
   list.forEach(item => {
+    // 如果了节点的话
     if (item.pid === rootValue) {
+      // 找到了节点 => 要继续寻找该节点有没有子节点
+      // 返回的数组 是 item的所有的子节点的集合
       const children = tranListToTreeData(list, item.id)
       if (children.length) {
-        item.child = children
+        item.children = children
       }
-      arr.push(item)
+      arr.push(item) // 把节点push到数组里面
     }
   })
   return arr

@@ -41,7 +41,7 @@
               <el-button type="text" size="small">转正</el-button>
               <el-button type="text" size="small">调岗</el-button>
               <el-button type="text" size="small">离职</el-button>
-              <el-button type="text" size="small">角色</el-button>
+              <el-button type="text" size="small" @click="editRole(row.id)">角色</el-button>
               <el-button type="text" size="small" @click="deleteEmployee(row.id)">删除</el-button>
             </template>
           </el-table-column>
@@ -58,6 +58,8 @@
         </el-row>
       </el-card>
       <add-employee :show-dialog.sync="showDialog"/>
+      <!--      角色编辑-->
+      <assign-role ref="assignRole" :show-role-dialog.sync="showRoleDialog" :user-id="userId"/>
     </div>
   </div>
 </template>
@@ -66,10 +68,13 @@
 import { delEmployee, getEmployeeList } from '@/api/employees'
 import EmployeeEnum from '@/api/constant/employees'
 import AddEmployee from '@/views/employees/components/add-employee'
+import AssignRole from '@/views/employees/components/assign-role'
 import { formatDate } from '@/filters'
+
 export default {
   components: {
-    AddEmployee
+    AddEmployee,
+    AssignRole
   },
   data() {
     return {
@@ -80,7 +85,9 @@ export default {
         total: 0
       },
       loading: false,
-      showDialog: false
+      showDialog: false,
+      showRoleDialog:false,
+      userId:''
     }
   },
   mounted() {
@@ -187,6 +194,11 @@ export default {
       })
       // return rows.map(item => Object.keys(headers).map(key => item[headers[key]]))
       // 需要处理时间格式问题
+    },
+    async editRole(id) {
+      this.userId = id // props传值 是异步的
+      await this.$refs.assignRole.getRoleDetail(id) // 父组件调用子组件方法
+      this.showRoleDialog = true
     }
   }
 }

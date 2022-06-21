@@ -32,7 +32,6 @@
 
 <script>
 import { deleteDepartments } from '@/api/departments'
-
 export default {
   name: 'TreeTools',
   props: {
